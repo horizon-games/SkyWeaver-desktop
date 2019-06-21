@@ -50,7 +50,7 @@ function buildMenu(mainWindow) {
           accelerator: 'F11',
           click: () => {
             const toggle = !mainWindow.isFullScreen()
-            mainWindow.setMenuBarVisibility(toggle)
+            mainWindow.setMenuBarVisibility(!toggle)
             mainWindow.setFullScreen(toggle)
           }
         },

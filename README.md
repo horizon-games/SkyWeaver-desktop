@@ -1,7 +1,5 @@
-# <img align="left" alt="remix" src="https://raw.githubusercontent.com/horizon-games/SkyWeaver-desktop/master/resources/icon.png" width="64" /> SkyWeaver Desktop
-
-<br/>
-
+SkyWeaver Desktop
+=================
 
 ## Install or Build your own
 

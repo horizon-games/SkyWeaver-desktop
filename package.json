@@ -8,6 +8,7 @@
   "homepage": "https://github.com/horizon-games/SkyWeaver-desktop",
   "main": "build/main.js",
   "build": {
+    "productName": "SkyWeaver",
     "appId": "net.horizongames.skyweaver",
     "files": [
       "build/**/*"
@@ -31,7 +32,8 @@
     "build": "webpack --mode production --color --config=webpack.config.js --env=production",
     "pack": "yarn dist:all --dir",
     "dist": "yarn build && electron-builder",
-    "dist:all": "yarn dist -ml",
+    "dist:all": "yarn dist -wml",
+    "dist:windows": "yarn dist -w",
     "dist:mac": "yarn dist -m",
     "dist:linux": "yarn dist -l"
   },

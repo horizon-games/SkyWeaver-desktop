@@ -8,7 +8,7 @@ SkyWeaver Desktop
 **To build your own:**
 1. Clone this repo
 2. `yarn install`
-3. `yarn dist`
+3. Build image -- for Mac: `yarn dist:mac`, for Windows: `yarn dist:windows`, for Linux: `yarn dist:linux`
 4. Find the distribution for your os in dist/
 
 

@@ -1,0 +1,55 @@
+{
+  "name": "SkyWeaver-desktop",
+  "version": "0.1.0",
+  "description": "SkyWeaver for Desktops",
+  "author": "Team Horizon <info@horizongames.net>",
+  "credits": "Horizon Blockchain Games https://horizongames.net",
+  "license": "MIT",
+  "homepage": "https://github.com/horizon-games/SkyWeaver-desktop",
+  "main": "build/main.js",
+  "build": {
+    "appId": "net.horizongames.skyweaver",
+    "files": [
+      "build/**/*"
+    ],
+    "directories": {
+      "buildResources": "resources"
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ]
+    },
+    "linux": {
+      "target": [
+        "tar.gz"
+      ]
+    }
+  },
+  "scripts": {
+    "dev": "node scripts/start.js",
+    "build": "webpack --mode production --color --config=webpack.config.js --env=production",
+    "pack": "yarn dist:all --dir",
+    "dist": "yarn build && electron-builder",
+    "dist:all": "yarn dist -ml",
+    "dist:mac": "yarn dist -m",
+    "dist:linux": "yarn dist -l"
+  },
+  "dependencies": {
+    "electron-fetch": "^1.2.1",
+    "fs-jetpack": "^2.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "7.4.5",
+    "@babel/preset-env": "7.4.5",
+    "babel-loader": "8.0.6",
+    "electron": "5.0.4",
+    "electron-builder": "20.44.4",
+    "request": "^2.88.0",
+    "rimraf": "^2.6.2",
+    "source-map-support": "^0.5.9",
+    "webpack": "4.35.0",
+    "webpack-cli": "^3.1.0",
+    "webpack-node-externals": "1.7.2"
+  }
+}

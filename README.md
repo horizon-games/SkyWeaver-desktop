@@ -14,7 +14,7 @@ SkyWeaver Desktop
 
 ## NixOS devs
 
-For nixos, you must use the shell.nix which is a mini x11 environment so that electron installs
-and is able to link without needing patchelf.
+For nixos, you must use the shell.nix which is a mini x11 environment so that
+electron installs and is able to link without needing patchelf.
 
 Simply run, `nix-shell`, then inside, `yarn dev`

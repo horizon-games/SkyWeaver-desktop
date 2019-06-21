@@ -54,25 +54,33 @@ function buildMenu(mainWindow) {
             mainWindow.setFullScreen(toggle)
           }
         },
-        { role: 'minimize' },
         {
-          label: 'Close',
-          accelerator: 'CmdOrCtrl+W',
+          label: 'Windowed',
+          // accelerator: 'F11', // TODO: figure out the best hot keys..
           click: () => {
-            const win = BrowserWindow.getFocusedWindow()
-            if (win === null) {
-              if (mainWindow.isDevToolsFocused()) {
-                mainWindow.closeDevTools()
-              }
-            } else {
-              if (process.platform === 'darwin') {
-                app.hide()
-              } else {
-                win.close()
-              }
-            }
+            mainWindow.setMenuBarVisibility(true)
+            mainWindow.setFullScreen(false)
           }
-        }
+        },
+        { role: 'minimize' }
+        // {
+        //   label: 'Close',
+        //   accelerator: 'CmdOrCtrl+W',
+        //   click: () => {
+        //     const win = BrowserWindow.getFocusedWindow()
+        //     if (win === null) {
+        //       if (mainWindow.isDevToolsFocused()) {
+        //         mainWindow.closeDevTools()
+        //       }
+        //     } else {
+        //       if (process.platform === 'darwin') {
+        //         app.hide()
+        //       } else {
+        //         win.close()
+        //       }
+        //     }
+        //   }
+        // }
       ]
     },
     {

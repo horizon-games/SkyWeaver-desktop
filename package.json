@@ -8,6 +8,7 @@
   "homepage": "https://github.com/horizon-games/SkyWeaver-desktop",
   "main": "build/main.js",
   "build": {
+    "productName": "SkyWeaver",
     "appId": "net.horizongames.skyweaver",
     "files": [
       "build/**/*"

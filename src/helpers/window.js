@@ -71,6 +71,16 @@ export default (name, options) => {
 
   state = ensureVisibleOnSomeDisplay(restore())
 
+  // set some defaults
+  options = {
+    ...options,
+    webPreferences: {
+      nodeIntegration: false,
+      nodeIntegrationInWorker: false,
+      allowRunningInsecureContent: false
+    }
+  }
+
   win = new BrowserWindow(Object.assign({}, options, state))
 
   win.on('close', saveState)

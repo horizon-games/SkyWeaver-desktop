@@ -45,6 +45,15 @@ function buildMenu(mainWindow) {
     {
       role: 'window',
       submenu: [
+        {
+          label: 'Full Screen',
+          accelerator: 'F11',
+          click: () => {
+            const toggle = !mainWindow.isFullScreen()
+            mainWindow.setMenuBarVisibility(toggle)
+            mainWindow.setFullScreen(toggle)
+          }
+        },
         { role: 'minimize' },
         {
           label: 'Close',

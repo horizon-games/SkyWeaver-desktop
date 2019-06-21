@@ -1,7 +1,7 @@
 {
   "name": "SkyWeaver",
-  "version": "0.1.0",
-  "description": "SkyWeaver for Desktops",
+  "version": "0.2.1",
+  "description": "SkyWeaver for Desktop",
   "author": "Team Horizon <info@horizongames.net>",
   "credits": "Horizon Blockchain Games https://horizongames.net",
   "license": "MIT",
@@ -11,24 +11,25 @@
     "productName": "SkyWeaver",
     "appId": "net.horizongames.skyweaver",
     "files": [
-      "build/**/*"
+      "build/**/*",
+      "resources/**"
     ],
     "directories": {
       "buildResources": "resources"
     },
+    "win": {
+      "target": ["portable"]
+    },
     "mac": {
-      "target": [
-        "dmg"
-      ]
+      "target": ["dmg"]
     },
     "linux": {
-      "target": [
-        "tar.gz"
-      ]
+      "target": ["tar.gz", "AppImage"]
     }
   },
   "scripts": {
     "dev": "node scripts/start.js",
+    "clean": "rimraf dist",
     "build": "webpack --mode production --color --config=webpack.config.js --env=production",
     "pack": "yarn dist:all --dir",
     "dist": "yarn build && electron-builder",

@@ -21,8 +21,8 @@ if (process.platform === 'darwin') {
 
 app.on('ready', () => {
   const mainWindow = createWindow('main', {
-    width: 1200,
-    height: 1000
+    width: 1440,
+    height: 840
   })
 
   Menu.setApplicationMenu(Menu.buildFromTemplate(buildMenu(mainWindow)))

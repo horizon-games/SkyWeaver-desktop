@@ -1,5 +1,5 @@
 {
-  "name": "SkyWeaver-desktop",
+  "name": "SkyWeaver",
   "version": "0.1.0",
   "description": "SkyWeaver for Desktops",
   "author": "Team Horizon <info@horizongames.net>",
@@ -8,7 +8,6 @@
   "homepage": "https://github.com/horizon-games/SkyWeaver-desktop",
   "main": "build/main.js",
   "build": {
-    "productName": "SkyWeaver",
     "appId": "net.horizongames.skyweaver",
     "files": [
       "build/**/*"

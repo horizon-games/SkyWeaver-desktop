@@ -1,15 +1,15 @@
 {
-  "name": "SkyWeaver",
-  "version": "0.3.0",
-  "description": "SkyWeaver for Desktop",
-  "author": "Team Horizon <info@horizongames.net>",
-  "credits": "Horizon Blockchain Games https://horizongames.net",
+  "name": "Skyweaver-Desktop",
+  "version": "0.4.0",
+  "description": "Skyweaver for Desktop",
+  "author": "Team Horizon <info@horizon.io>",
+  "credits": "Horizon Blockchain Games https://horizon.io",
   "license": "MIT",
-  "homepage": "https://github.com/horizon-games/SkyWeaver-desktop",
+  "homepage": "https://github.com/horizon-games/Skyweaver-desktop",
   "main": "build/main.js",
   "build": {
-    "productName": "SkyWeaver",
-    "appId": "net.horizongames.skyweaver",
+    "productName": "Skyweaver",
+    "appId": "net.skyweaver.desktop",
     "files": [
       "build/**/*",
       "resources/**"
@@ -46,15 +46,15 @@
     "dist:linux": "yarn dist -l"
   },
   "dependencies": {
-    "electron-fetch": "^1.2.1",
-    "fs-jetpack": "^2.1.0"
+    "electron-fetch": "^1.7.1",
+    "fs-jetpack": "^4.0.1"
   },
   "devDependencies": {
-    "@babel/core": "7.10.4",
-    "@babel/preset-env": "7.10.4",
-    "babel-loader": "8.1.0",
-    "electron": "9.1.0",
-    "electron-builder": "22.7.0",
+    "@babel/core": "7.12.3",
+    "@babel/preset-env": "7.12.1",
+    "babel-loader": "8.2.1",
+    "electron": "10.1.5",
+    "electron-builder": "22.9.1",
     "request": "^2.88.0",
     "rimraf": "^3.0.2",
     "source-map-support": "^0.5.9",

@@ -16,7 +16,7 @@
       "resources/**"
     ],
     "dmg": {
-      "sign": false,
+      "sign": false
     },
     "directories": {
       "buildResources": "resources"

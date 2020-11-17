@@ -10,7 +10,7 @@
   "build": {
     "productName": "Skyweaver",
     "appId": "net.skyweaver.app",
-    "afterSign": "scripts/notarize.js",
+    "afterSign": "scripts/mac/notarize.js",
     "files": [
       "build/**/*",
       "resources/**"
@@ -22,11 +22,12 @@
       "target": [
         "nsis"
       ],
-      "icon": "resources/icon.ico"
+      "icon": "resources/icon.ico",
+      "sign": "scripts/win/sign.js"
     },
     "mac": {
-      "entitlements": "./scripts/entitlements.mac.plist",
-      "entitlementsInherit": "scripts/entitlements.mac.plist",
+      "entitlements": "./scripts/mac/entitlements.mac.plist",
+      "entitlementsInherit": "scripts/mac/entitlements.mac.plist",
       "hardenedRuntime": true,
       "gatekeeperAssess": false,
       "target": [

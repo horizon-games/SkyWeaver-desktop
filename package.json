@@ -10,6 +10,7 @@
   "build": {
     "productName": "Skyweaver",
     "appId": "net.skyweaver.app",
+    "afterSign": "scripts/notarize.js",
     "files": [
       "build/**/*",
       "resources/**"
@@ -24,6 +25,10 @@
       "icon": "resources/icon.ico"
     },
     "mac": {
+      "entitlements": "./build/entitlements.mac.plist",
+      "entitlementsInherit": "build/entitlements.mac.plist",
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false,
       "target": [
         "dmg"
       ]
@@ -33,6 +38,7 @@
       "icon": "resources/dmg-icon.icns",
       "iconSize": 128,
       "background": "resources/background.png",
+      "sign": false,
       "window": {
         "width": 540,
         "height": 380
@@ -69,6 +75,7 @@
     "dist:linux": "yarn dist -l"
   },
   "dependencies": {
+    "dotenv": "^8.2.0",
     "electron-fetch": "^1.7.1",
     "fs-jetpack": "^4.0.1"
   },
@@ -78,6 +85,7 @@
     "babel-loader": "8.2.1",
     "electron": "11.0.1",
     "electron-builder": "22.9.1",
+    "electron-notarize": "^1.0.0",
     "request": "^2.88.0",
     "rimraf": "^3.0.2",
     "source-map-support": "^0.5.9",

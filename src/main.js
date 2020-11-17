@@ -10,19 +10,17 @@ if (NODE_ENV !== 'production') {
   app.setPath('userData', userDataPath)
 }
 
-if (process.platform === 'darwin') {
-  app.setAboutPanelOptions({
-    applicationName: 'Skyweaver',
-    credits: 'Horizon Blockchain Games \n https://horizon.io',
-    copyright: '(c) 2019-present Horizon Blockchain Games Inc.'
-  })
-}
+app.setAboutPanelOptions({
+  applicationName: 'Skyweaver',
+  version: '', // darwin reports version twice unnecessarily
+  credits: 'Horizon Blockchain Games – https://horizon.io',
+  copyright: '(c) 2019-present Horizon Blockchain Games Inc.'
+})
 
 process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true'
 
 app.on('ready', () => {
 
-  // const appUrl = 'https://dev5.skyweaver.net'
   // const appUrl = 'http://localhost:3000'
   const appUrl = 'https://beta.skyweaver.net'
 

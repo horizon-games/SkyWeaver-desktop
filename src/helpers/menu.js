@@ -29,6 +29,24 @@ function buildMenu(mainWindow) {
     })
   }
 
+  const helpSubmenu = []
+
+  helpSubmenu.push({
+    label: 'Learn More',
+    click: () => {
+      shell.openExternal('https://www.skyweaver.net')
+    }
+  })
+
+  if (process.platform !== 'darwin') { // windows or linux
+    helpSubmenu.push({
+      label: 'About',
+      click: () => {
+        app.showAboutPanel()
+      }
+    })
+  }
+
   menu.push(...[
     {
       label: 'Edit',
@@ -97,14 +115,7 @@ function buildMenu(mainWindow) {
     },
     {
       role: 'help',
-      submenu: [
-        {
-          label: 'Learn More',
-          click: () => {
-            shell.openExternal('https://www.skyweaver.net')
-          }
-        }
-      ]
+      submenu: helpSubmenu
     }
   ])
 

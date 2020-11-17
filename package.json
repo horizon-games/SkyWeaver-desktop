@@ -1,5 +1,5 @@
 {
-  "name": "Skyweaver-Desktop",
+  "name": "Skyweaver",
   "version": "0.4.0",
   "description": "Skyweaver for Desktop",
   "author": "Team Horizon <info@horizon.io>",
@@ -9,7 +9,7 @@
   "main": "build/main.js",
   "build": {
     "productName": "Skyweaver",
-    "appId": "net.skyweaver.desktop",
+    "appId": "net.skyweaver.app",
     "files": [
       "build/**/*",
       "resources/**"
@@ -19,12 +19,35 @@
     },
     "win": {
       "target": [
-        "portable"
-      ]
+        "nsis"
+      ],
+      "icon": "resources/icon.ico"
     },
     "mac": {
       "target": [
         "dmg"
+      ]
+    },
+    "dmg": {
+      "title": "${productName} ${version}",
+      "icon": "resources/dmg-icon.icns",
+      "iconSize": 128,
+      "background": "resources/background.png",
+      "window": {
+        "width": 540,
+        "height": 380
+      },
+      "contents": [
+        {
+          "x": 130,
+          "y": 200
+        },
+        {
+          "x": 400,
+          "y": 200,
+          "type": "link",
+          "path": "/Applications"
+        }
       ]
     },
     "linux": {
@@ -40,8 +63,8 @@
     "build": "webpack --mode production --color --config=webpack.config.js --env=production",
     "pack": "yarn dist:all --dir",
     "dist": "yarn build && electron-builder",
-    "dist:all": "yarn dist -wml",
-    "dist:windows": "yarn dist -w",
+    "dist:all": "yarn build && yarn dist -wml",
+    "dist:win": "yarn dist -w",
     "dist:mac": "yarn dist -m",
     "dist:linux": "yarn dist -l"
   },
@@ -53,7 +76,7 @@
     "@babel/core": "7.12.3",
     "@babel/preset-env": "7.12.1",
     "babel-loader": "8.2.1",
-    "electron": "10.1.5",
+    "electron": "11.0.1",
     "electron-builder": "22.9.1",
     "request": "^2.88.0",
     "rimraf": "^3.0.2",

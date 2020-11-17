@@ -25,8 +25,8 @@
       "icon": "resources/icon.ico"
     },
     "mac": {
-      "entitlements": "./build/entitlements.mac.plist",
-      "entitlementsInherit": "build/entitlements.mac.plist",
+      "entitlements": "./scripts/entitlements.mac.plist",
+      "entitlementsInherit": "scripts/entitlements.mac.plist",
       "hardenedRuntime": true,
       "gatekeeperAssess": false,
       "target": [

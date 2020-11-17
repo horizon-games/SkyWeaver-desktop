@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="">
+<head>
+  <meta charset="utf-8">
+  <title>wallet</title>
+</head>
+
+<body>
+  <h1>wallet</h1>
+
+  <div>
+    <button id="button">AUTH</button>
+  </div>
+</body>
+
+<script>
+  const button = document.getElementById("button")
+  button.onclick = (ev) => {
+    ev.preventDefault()
+
+    const windowFeatures = 'toolbar=0,location=0,menubar=0,scrollbars=yes,status=yes,width=700,height=400'
+    window.open("http://localhost:3000/auth.html", "_blank", windowFeatures)
+  }
+</script>
+
+</html>

@@ -22,12 +22,13 @@ process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true'
 
 app.on('ready', () => {
 
-  const appUrl = 'https://dev5.skyweaver.net'
+  // const appUrl = 'https://dev5.skyweaver.net'
+  // const appUrl = 'http://localhost:3000'
+  const appUrl = 'https://beta.skyweaver.net'
 
   session.defaultSession.webRequest.onBeforeSendHeaders((details, callback) => {
     details.requestHeaders['User-Agent'] = 'Chrome'
     // details.requestHeaders["Referer"] = appUrl
-    // details.requestHeaders["Origin"] = appUrl
     callback({ cancel: false, requestHeaders: details.requestHeaders })
   })
 

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="">
+<head>
+  <meta charset="utf-8">
+  <title>app</title>
+</head>
+
+<body>
+  <h1>skyweaver</h1>
+
+  <div>
+    <button id="button">START</button>
+  </div>
+</body>
+
+<script>
+  const button = document.getElementById("button")
+  button.onclick = (ev) => {
+    ev.preventDefault()
+
+    const windowFeatures = 'toolbar=0,location=0,menubar=0,scrollbars=yes,status=yes,width=450,height=700'
+    window.open("http://localhost:3000/wallet.html", "_blank", windowFeatures)
+  }
+</script>
+
+</html>

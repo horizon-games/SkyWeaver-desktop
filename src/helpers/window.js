@@ -74,11 +74,16 @@ export default (name, options) => {
   options = {
     ...options,
     webPreferences: {
+      sandbox: true,
       nodeIntegration: false,
       nodeIntegrationInWorker: false,
+      nodeIntegrationInSubFrames: false,
       allowRunningInsecureContent: false,
       contextIsolation: false,
-      enableRemoteModule: true
+      enableRemoteModule: true,
+      webSecurity: true,
+      webgl: true,
+      nativeWindowOpen: true
     }
   }
 

@@ -14,19 +14,26 @@ app.setAboutPanelOptions({
   applicationName: 'Skyweaver',
   version: '', // darwin reports version twice unnecessarily
   credits: 'Horizon Blockchain Games – https://horizon.io',
-  copyright: '(c) 2019-present Horizon Blockchain Games Inc.'
+  copyright: '(c) 2017-present Horizon Blockchain Games Inc.'
 })
 
 process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true'
 
+const getUserAgent = () => {
+  let ua = session.defaultSession.getUserAgent()
+  ua = ua.replace('Skyweaver/', 'Skyweaver-Desktop/')
+  return ua
+}
+
 app.on('ready', () => {
 
   // const appUrl = 'http://localhost:3000'
-  const appUrl = 'https://beta.skyweaver.net'
+  const appUrl = 'https://dev5.skyweaver.net'
+
+  const userAgent = getUserAgent()
 
   session.defaultSession.webRequest.onBeforeSendHeaders((details, callback) => {
-    details.requestHeaders['User-Agent'] = 'Chrome'
-    // details.requestHeaders["Referer"] = appUrl
+    details.requestHeaders['User-Agent'] = userAgent
     callback({ cancel: false, requestHeaders: details.requestHeaders })
   })
 
@@ -44,7 +51,8 @@ app.on('ready', () => {
   mainWindow.loadURL(
     appUrl,
     {
-      httpReferrer: appUrl
+      httpReferrer: appUrl,
+      userAgent: userAgent
     }
     // url.format({
     //   pathname: path.join(__dirname, 'app/index.html'),
@@ -58,6 +66,7 @@ app.on('ready', () => {
   mainWindow.webContents.on('dom-ready', () => {
     mainWindow.webContents.executeJavaScript("window.onbeforeunload = null")
   })
+
 })
 
 app.on('window-all-closed', () => {

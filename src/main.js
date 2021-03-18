@@ -1,41 +1,39 @@
-import path from 'path'
-import url from 'url'
-import { app, Menu, session } from 'electron'
-import createWindow from './helpers/window'
-import { buildMenu } from './helpers/menu'
+import path from "path";
+import url from "url";
+import { app, Menu, session } from "electron";
+import createWindow from "./helpers/window";
+import { buildMenu } from "./helpers/menu";
 
-let userDataPath = app.getPath('userData')
-if (NODE_ENV !== 'production') {
-  userDataPath = `${userDataPath} (${NODE_ENV})`
-  app.setPath('userData', userDataPath)
+let userDataPath = app.getPath("userData");
+if (NODE_ENV !== "production") {
+  userDataPath = `${userDataPath} (${NODE_ENV})`;
+  app.setPath("userData", userDataPath);
 }
 
 app.setAboutPanelOptions({
-  applicationName: 'Skyweaver',
-  version: '', // darwin reports version twice unnecessarily
-  credits: 'Horizon Blockchain Games – https://horizon.io',
-  copyright: '(c) 2019-present Horizon Blockchain Games Inc.'
-})
+  applicationName: "Skyweaver",
+  version: "", // darwin reports version twice unnecessarily
+  credits: "Horizon Blockchain Games – https://horizon.io",
+  copyright: "(c) 2019-present Horizon Blockchain Games Inc.",
+});
 
-process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true'
+process.env["ELECTRON_DISABLE_SECURITY_WARNINGS"] = "true";
 
-app.on('ready', () => {
-
-  // const appUrl = 'http://localhost:3000'
-  const appUrl = 'https://beta.skyweaver.net'
+app.on("ready", () => {
+  const appUrl = "https://dev5.skyweaver.net";
 
   session.defaultSession.webRequest.onBeforeSendHeaders((details, callback) => {
-    details.requestHeaders['User-Agent'] = 'Chrome'
+    details.requestHeaders["User-Agent"] = "Chrome";
     // details.requestHeaders["Referer"] = appUrl
-    callback({ cancel: false, requestHeaders: details.requestHeaders })
-  })
+    callback({ cancel: false, requestHeaders: details.requestHeaders });
+  });
 
-  const mainWindow = createWindow('main', {
+  const mainWindow = createWindow("main", {
     width: 1440,
-    height: 840
-  })
+    height: 840,
+  });
 
-  Menu.setApplicationMenu(Menu.buildFromTemplate(buildMenu(mainWindow)))
+  Menu.setApplicationMenu(Menu.buildFromTemplate(buildMenu(mainWindow)));
 
   // Register app cache on the main window's network stack
   // registerAppCache(mainWindow, userDataPath)
@@ -44,22 +42,22 @@ app.on('ready', () => {
   mainWindow.loadURL(
     appUrl,
     {
-      httpReferrer: appUrl
+      httpReferrer: appUrl,
     }
     // url.format({
     //   pathname: path.join(__dirname, 'app/index.html'),
     //   protocol: 'file:',
     //   slashes: true
     // })
-  )
+  );
 
   // Work-around for electron/chrome 51+ onbeforeunload behavior
   // which prevents the app window to close if not invalidated.
-  mainWindow.webContents.on('dom-ready', () => {
-    mainWindow.webContents.executeJavaScript("window.onbeforeunload = null")
-  })
-})
+  mainWindow.webContents.on("dom-ready", () => {
+    mainWindow.webContents.executeJavaScript("window.onbeforeunload = null");
+  });
+});
 
-app.on('window-all-closed', () => {
-  app.quit()
-})
+app.on("window-all-closed", () => {
+  app.quit();
+});

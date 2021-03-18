@@ -2,3 +2,7 @@
 node_modules
 dist
 build
+yarn-error.log
+.env
+*.p12
+*.provisionprofile

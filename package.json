@@ -1,15 +1,16 @@
 {
-  "name": "SkyWeaver",
-  "version": "0.3.0",
-  "description": "SkyWeaver for Desktop",
-  "author": "Team Horizon <info@horizongames.net>",
-  "credits": "Horizon Blockchain Games https://horizongames.net",
+  "name": "Skyweaver",
+  "version": "0.4.0",
+  "description": "Skyweaver for Desktop",
+  "author": "Team Horizon <info@horizon.io>",
+  "credits": "Horizon Blockchain Games https://horizon.io",
   "license": "MIT",
-  "homepage": "https://github.com/horizon-games/SkyWeaver-desktop",
+  "homepage": "https://github.com/horizon-games/Skyweaver-desktop",
   "main": "build/main.js",
   "build": {
-    "productName": "SkyWeaver",
-    "appId": "net.horizongames.skyweaver",
+    "productName": "Skyweaver",
+    "appId": "net.skyweaver.app",
+    "afterSign": "scripts/mac/notarize.js",
     "files": [
       "build/**/*",
       "resources/**"
@@ -19,12 +20,41 @@
     },
     "win": {
       "target": [
-        "portable"
-      ]
+        "nsis"
+      ],
+      "icon": "resources/icon.ico",
+      "sign": "scripts/win/sign.js"
     },
     "mac": {
+      "entitlements": "./scripts/mac/entitlements.mac.plist",
+      "entitlementsInherit": "scripts/mac/entitlements.mac.plist",
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false,
       "target": [
         "dmg"
+      ]
+    },
+    "dmg": {
+      "title": "${productName} ${version}",
+      "icon": "resources/dmg-icon.icns",
+      "iconSize": 128,
+      "background": "resources/background.png",
+      "sign": false,
+      "window": {
+        "width": 540,
+        "height": 380
+      },
+      "contents": [
+        {
+          "x": 130,
+          "y": 200
+        },
+        {
+          "x": 400,
+          "y": 200,
+          "type": "link",
+          "path": "/Applications"
+        }
       ]
     },
     "linux": {
@@ -40,21 +70,23 @@
     "build": "webpack --mode production --color --config=webpack.config.js --env=production",
     "pack": "yarn dist:all --dir",
     "dist": "yarn build && electron-builder",
-    "dist:all": "yarn dist -wml",
-    "dist:windows": "yarn dist -w",
+    "dist:all": "yarn build && yarn dist -wml",
+    "dist:win": "yarn dist -w",
     "dist:mac": "yarn dist -m",
     "dist:linux": "yarn dist -l"
   },
   "dependencies": {
-    "electron-fetch": "^1.2.1",
-    "fs-jetpack": "^2.1.0"
+    "dotenv": "^8.2.0",
+    "electron-fetch": "^1.7.1",
+    "fs-jetpack": "^4.0.1"
   },
   "devDependencies": {
-    "@babel/core": "7.10.4",
-    "@babel/preset-env": "7.10.4",
-    "babel-loader": "8.1.0",
-    "electron": "9.1.0",
-    "electron-builder": "22.7.0",
+    "@babel/core": "7.12.3",
+    "@babel/preset-env": "7.12.1",
+    "babel-loader": "8.2.1",
+    "electron": "11.0.1",
+    "electron-builder": "22.9.1",
+    "electron-notarize": "^1.0.0",
     "request": "^2.88.0",
     "rimraf": "^3.0.2",
     "source-map-support": "^0.5.9",

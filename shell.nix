@@ -27,13 +27,15 @@
     libnotify
     libxml2
     libxslt
+    libdrm
     libuuid
     mesa_glu
+    mesa
     pango
     rxvt_unicode.terminfo
     curl
     openal
-    openssl_1_0_2
+    openssl
     netcat
     nspr
     nss

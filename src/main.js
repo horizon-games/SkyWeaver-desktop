@@ -1,9 +1,8 @@
 import path from 'path'
 import url from 'url'
-import { app, Menu } from 'electron'
+import { app, Menu, session } from 'electron'
 import createWindow from './helpers/window'
 import { buildMenu } from './helpers/menu'
-// import { registerAppCache } from './helpers/app_cache'
 
 let userDataPath = app.getPath('userData')
 if (NODE_ENV !== 'production') {
@@ -11,15 +10,26 @@ if (NODE_ENV !== 'production') {
   app.setPath('userData', userDataPath)
 }
 
-if (process.platform === 'darwin') {
-  app.setAboutPanelOptions({
-    applicationName: 'SkyWeaver',
-    credits: 'Horizon Blockchain Games \n https://horizongames.net',
-    copyright: '(c) 2019-present Horizon Blockchain Games Inc.'
-  })
-}
+app.setAboutPanelOptions({
+  applicationName: 'Skyweaver',
+  version: '', // darwin reports version twice unnecessarily
+  credits: 'Horizon Blockchain Games – https://horizon.io',
+  copyright: '(c) 2019-present Horizon Blockchain Games Inc.'
+})
+
+process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true'
 
 app.on('ready', () => {
+
+  // const appUrl = 'http://localhost:3000'
+  const appUrl = 'https://beta.skyweaver.net'
+
+  session.defaultSession.webRequest.onBeforeSendHeaders((details, callback) => {
+    details.requestHeaders['User-Agent'] = 'Chrome'
+    // details.requestHeaders["Referer"] = appUrl
+    callback({ cancel: false, requestHeaders: details.requestHeaders })
+  })
+
   const mainWindow = createWindow('main', {
     width: 1440,
     height: 840
@@ -32,7 +42,10 @@ app.on('ready', () => {
 
   // Load the local static app
   mainWindow.loadURL(
-    'https://beta.skyweaver.net/'
+    appUrl,
+    {
+      httpReferrer: appUrl
+    }
     // url.format({
     //   pathname: path.join(__dirname, 'app/index.html'),
     //   protocol: 'file:',

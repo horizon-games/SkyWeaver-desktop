@@ -9,7 +9,6 @@ export default (name, options) => {
     height: options.height
   }
   let state = {}
-  let win
 
   const restore = () => {
     let restoredState = {}
@@ -75,13 +74,22 @@ export default (name, options) => {
   options = {
     ...options,
     webPreferences: {
+      sandbox: true,
       nodeIntegration: false,
       nodeIntegrationInWorker: false,
-      allowRunningInsecureContent: false
+      nodeIntegrationInSubFrames: false,
+      allowRunningInsecureContent: false,
+      contextIsolation: false,
+      enableRemoteModule: true,
+      webSecurity: true,
+      webgl: true,
+      nativeWindowOpen: true
     }
   }
 
-  win = new BrowserWindow(Object.assign({}, options, state))
+  const winOptions = Object.assign({}, options, state)
+
+  const win = new BrowserWindow(winOptions)
 
   win.on('close', saveState)
 

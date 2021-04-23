@@ -1,6 +1,4 @@
-import { app, shell, BrowserWindow, BrowserView } from 'electron'
-
-const pkgJson = require('../../package.json')
+import { app, shell, BrowserWindow } from 'electron'
 
 function buildMenu(mainWindow) {
   let menu = []
@@ -23,9 +21,7 @@ function buildMenu(mainWindow) {
   } else {
     menu.push({
       label: 'File',
-      submenu: [
-        { role: 'quit' }
-      ]
+      submenu: [{ role: 'quit' }]
     })
   }
 
@@ -38,7 +34,8 @@ function buildMenu(mainWindow) {
     }
   })
 
-  if (process.platform !== 'darwin') { // windows or linux
+  if (process.platform !== 'darwin') {
+    // windows or linux
     helpSubmenu.push({
       label: 'About',
       click: () => {
@@ -47,77 +44,79 @@ function buildMenu(mainWindow) {
     })
   }
 
-  menu.push(...[
-    {
-      label: 'Edit',
-      submenu: [
-        { role: 'undo' },
-        { role: 'redo' },
-        { type: 'separator' },
-        { role: 'cut' },
-        { role: 'copy' },
-        { role: 'paste' },
-        { role: 'selectall' }
-      ]
-    },
-    {
-      role: 'window',
-      submenu: [
-        {
-          label: 'Full Screen',
-          accelerator: 'F11',
-          click: () => {
-            const toggle = !mainWindow.isFullScreen()
-            mainWindow.setMenuBarVisibility(!toggle)
-            mainWindow.setFullScreen(toggle)
+  menu.push(
+    ...[
+      {
+        label: 'Edit',
+        submenu: [
+          { role: 'undo' },
+          { role: 'redo' },
+          { type: 'separator' },
+          { role: 'cut' },
+          { role: 'copy' },
+          { role: 'paste' },
+          { role: 'selectall' }
+        ]
+      },
+      {
+        role: 'window',
+        submenu: [
+          {
+            label: 'Full Screen',
+            accelerator: 'F11',
+            click: () => {
+              const toggle = !mainWindow.isFullScreen()
+              mainWindow.setMenuBarVisibility(!toggle)
+              mainWindow.setFullScreen(toggle)
+            }
+          },
+          {
+            label: 'Windowed',
+            // accelerator: 'F11', // TODO: figure out the best hot keys..
+            click: () => {
+              mainWindow.setMenuBarVisibility(true)
+              mainWindow.setFullScreen(false)
+            }
+          },
+          { role: 'minimize' }
+          // {
+          //   label: 'Close',
+          //   accelerator: 'CmdOrCtrl+W',
+          //   click: () => {
+          //     const win = BrowserWindow.getFocusedWindow()
+          //     if (win === null) {
+          //       if (mainWindow.isDevToolsFocused()) {
+          //         mainWindow.closeDevTools()
+          //       }
+          //     } else {
+          //       if (process.platform === 'darwin') {
+          //         app.hide()
+          //       } else {
+          //         win.close()
+          //       }
+          //     }
+          //   }
+          // }
+        ]
+      },
+      {
+        label: 'Inspector',
+        submenu: [
+          {
+            label: 'Toggle DevTools',
+            accelerator: 'Alt+CmdOrCtrl+I',
+            click: () => {
+              BrowserWindow.getFocusedWindow().toggleDevTools()
+            }
           }
-        },
-        {
-          label: 'Windowed',
-          // accelerator: 'F11', // TODO: figure out the best hot keys..
-          click: () => {
-            mainWindow.setMenuBarVisibility(true)
-            mainWindow.setFullScreen(false)
-          }
-        },
-        { role: 'minimize' }
-        // {
-        //   label: 'Close',
-        //   accelerator: 'CmdOrCtrl+W',
-        //   click: () => {
-        //     const win = BrowserWindow.getFocusedWindow()
-        //     if (win === null) {
-        //       if (mainWindow.isDevToolsFocused()) {
-        //         mainWindow.closeDevTools()
-        //       }
-        //     } else {
-        //       if (process.platform === 'darwin') {
-        //         app.hide()
-        //       } else {
-        //         win.close()
-        //       }
-        //     }
-        //   }
-        // }
-      ]
-    },
-    {
-      label: 'Inspector',
-      submenu: [
-        {
-          label: 'Toggle DevTools',
-          accelerator: 'Alt+CmdOrCtrl+I',
-          click: () => {
-            BrowserWindow.getFocusedWindow().toggleDevTools();
-          }
-        }
-      ]
-    },
-    {
-      role: 'help',
-      submenu: helpSubmenu
-    }
-  ])
+        ]
+      },
+      {
+        role: 'help',
+        submenu: helpSubmenu
+      }
+    ]
+  )
 
   return menu
 }

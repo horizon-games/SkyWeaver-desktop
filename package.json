@@ -1,6 +1,6 @@
 {
   "name": "Skyweaver",
-  "version": "0.5.1",
+  "version": "5.5.1",
   "description": "Skyweaver for Desktop",
   "author": "Team Horizon <info@horizon.io>",
   "credits": "Horizon Blockchain Games https://horizon.io",
@@ -61,6 +61,12 @@
       "target": [
         "tar.gz",
         "AppImage"
+      ]
+    },
+    "protocols": {
+      "name": "skyweaver-protocol",
+      "schemes": [
+        "skyweaver"
       ]
     }
   },

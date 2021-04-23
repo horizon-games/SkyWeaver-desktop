@@ -1,6 +1,6 @@
 {
   "name": "Skyweaver",
-  "version": "0.4.0",
+  "version": "0.5.1",
   "description": "Skyweaver for Desktop",
   "author": "Team Horizon <info@horizon.io>",
   "credits": "Horizon Blockchain Games https://horizon.io",
@@ -77,15 +77,15 @@
   },
   "dependencies": {
     "dotenv": "^8.2.0",
-    "electron-fetch": "^1.7.1",
-    "fs-jetpack": "^4.0.1"
+    "electron-fetch": "^1.7.3",
+    "fs-jetpack": "^4.1.0"
   },
   "devDependencies": {
-    "@babel/core": "7.12.3",
-    "@babel/preset-env": "7.12.1",
-    "babel-loader": "8.2.1",
-    "electron": "11.0.1",
-    "electron-builder": "22.9.1",
+    "@babel/core": "7.13.16",
+    "@babel/preset-env": "7.13.15",
+    "babel-loader": "8.2.2",
+    "electron": "12.0.5",
+    "electron-builder": "22.10.5",
     "electron-notarize": "^1.0.0",
     "request": "^2.88.0",
     "rimraf": "^3.0.2",
